@@ -1,1 +1,76 @@
-/* You can add global styles to this file, and also import other style files */
+@import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
+@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+
+// @import '~@angular/material/theming';
+// @include mat-core();
+
+// $mat-primary-scheme: (
+//   100: #f8bbd0,
+//   500: #e91e63,
+//   700: #c2185b,
+//   contrast: (
+//     100: rgba(0,0,0,0.87),
+//     500: #ffffff,
+//     700: #ffffff,
+//   )
+// );
+// $mat-accent-scheme: (
+//   100: #cfd8dc,
+//   500: #425864,
+//   700: #78909c,
+//   contrast: (
+//     100: rgba(0,0,0,0.87),
+//     500: rgba(0,0,0,0.87),
+//     700: #ffffff,
+//   )
+// );
+// $mat-primary-palette: mat-palette($mat-primary-scheme);
+// $mat-accent-palette: mat-palette($mat-accent-scheme);
+
+// $dark-theme: mat-dark-theme($mat-primary-palette, $mat-accent-palette);
+
+// @include angular-material-theme($dark-theme);  
+
+::selection{
+  background-color: #DB2D94;
+  color: #fff;
+}
+
+// html, body { 
+//   height: 100%; 
+// }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #0f1225 !important;}
+
+
+mat-dialog-container{
+  background-color: #222435 !important;
+  font-family: 'Exo 2', sans-serif !important;
+}
+
+mat-dialog-content{
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+app-dialog-content mat-dialog-content::-webkit-scrollbar{
+  height: 0px;
+  width: 0px;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+  border-color:deepskyblue; 
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle{
+  color:deepskyblue;
+  background-color:deepskyblue ;
+}
+
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color:deepskyblue;
+}
+
+.mat-radio-label {
+  white-space: normal !important;
+}

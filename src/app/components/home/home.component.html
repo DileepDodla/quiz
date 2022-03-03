@@ -1,0 +1,86 @@
+<div class="container text-center my-3">
+    <h1 class="lh-1">Open TDB Quiz</h1>
+    <button mat-button matTooltip="Total number of available questions in the database"
+        class="btn text-white fs-6 border-gradient my-2 m-auto" (click)="openDialog()">
+        Total no. of questions:
+        <ng-template *ngIf="totalNumOfQuestions!=0; then displayTotalNumOfQuestions; else progressSpinner">
+        </ng-template>
+        <ng-template #displayTotalNumOfQuestions>
+            {{customNumberFormat(totalNumOfQuestions)}}
+        </ng-template>
+        <ng-template #progressSpinner>
+            <mat-spinner class="d-inline-block ms-1" [diameter]="18"></mat-spinner>
+        </ng-template>
+    </button>
+</div>
+<div class="container my-4" style="border: 0px solid gray;">
+    <form [formGroup]="quizPreferencesForm" (ngSubmit)="onQuizPreferencesFormSubmit()" autocomplete="off" novalidate>
+        <div class="row my-4">
+            <div class="col-lg-11">
+                <div class="row justify-content-center">
+                    <div class="col-lg-3 col-md-4 text-center">
+                        <mat-form-field appearance="outline" color="accent">
+                            <mat-label>Number of Questions</mat-label>
+                            <input type="number" value="10" min="5" max="50" matInput formControlName="amount"
+                                color="accent">
+                            <mat-error *ngIf="quizPreferencesForm.get('amount')?.hasError('required')">
+                                You must enter a value
+                            </mat-error>
+                            <mat-error
+                                *ngIf="quizPreferencesForm.get('amount')?.hasError('min') || quizPreferencesForm.get('amount')?.hasError('max')">
+                                You must enter a value between 5 and 50
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-3 col-md-4 text-center">
+                        <mat-form-field appearance="outline" color="accent">
+                            <mat-label>Category</mat-label>
+                            <mat-select formControlName="category">
+                                <mat-option value="">Any Category</mat-option>
+
+                                <mat-option *ngFor="let category of categories()" [value]="category.id">
+                                    {{category.name}}
+                                </mat-option>
+
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-3 col-md-4 text-center">
+                        <mat-form-field appearance="outline" color="accent">
+                            <mat-label>Difficulty</mat-label>
+                            <mat-select formControlName="difficulty">
+                                <mat-option value="">Any Difficulty</mat-option>
+                                <mat-option value="easy">Easy</mat-option>
+                                <mat-option value="medium">Medium</mat-option>
+                                <mat-option value="hard">Hard</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-3 col-md-4 text-center">
+                        <mat-form-field appearance="outline" color="accent">
+                            <mat-label>Type</mat-label>
+                            <mat-select formControlName="type">
+                                <mat-option value="">Any Type</mat-option>
+                                <mat-option value="multiple">Multiple Choice</mat-option>
+                                <mat-option value="boolean">True / False</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1 d-flex justify-content-center">
+                <div>
+                    <button class="mt-2 border-info border text-info bg-transparent" mat-raised-button
+                        matTooltip="Save preferences" (click)="onSavePreferences()">
+                        <mat-icon class="fs-2" [inline]="true">save</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row py-2 my-4">
+            <div class="col-12 text-center">
+                <button type="submit" class="mx-1 py-1 fs-6" mat-raised-button color="primary">Start Quiz</button>
+            </div>
+        </div>
+    </form>
+</div>

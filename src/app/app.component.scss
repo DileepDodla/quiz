@@ -1,0 +1,15 @@
+@media screen and (max-width: 600px) {
+    #fab{
+        position: fixed;
+        bottom: 0.2rem;
+        right: 0.3rem;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    #fab {
+        position: fixed;
+        bottom: 1rem;
+        right: 1.5rem;
+    }
+}

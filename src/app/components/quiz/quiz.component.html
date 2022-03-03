@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-12 my-2">
+            <mat-progress-bar class="mb-3 py-2" mode="determinate" [value]="timerValue">
+            </mat-progress-bar>
+            <div class="d-flex align-items-center">
+                <span class="fs-5 text-info">Question {{currentQuestionNo}}/{{questionsData.length}}</span>
+                <mat-chip-list class="text-capitalize mx-3">
+                    <mat-basic-chip class="mx-2 p-2 badge rounded-pill text-wrap" style="background-color: #c2185b;">
+                        {{decode(currentQuestion.category)}}</mat-basic-chip>
+                    <mat-basic-chip class="mx-2 my-1 p-2 badge rounded-pill" style="background-color: #c2185b;">
+                        {{decode(currentQuestion.difficulty)}}</mat-basic-chip>
+                </mat-chip-list>
+            </div>
+            <hr class="text-info" style="height: 1.5px;">
+            <h2>{{decode(currentQuestion.question)}}</h2>
+
+            <mat-radio-group [(ngModel)]="selectedOption">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-12 my-2" *ngFor="let option of currentQuestionOptions">
+                        <mat-radio-button class="fs-6 rounded border border-info p-3 w-100" [value]="option">
+                            {{decode(option)}}
+                        </mat-radio-button>
+                    </div>
+                </div>
+            </mat-radio-group>
+        </div>
+        <div class="row mt-2 mb-4">
+            <div class="col-12 text-center">
+                <button class="fs-6 py-1" mat-raised-button color="warn" [disabled]="selectedOption===''"
+                    (click)="loadNextQuestion()">{{currentQuestionNo === 10 ? "Submit" : "Next"}}</button>
+            </div>
+        </div>
+    </div>
+</div>
